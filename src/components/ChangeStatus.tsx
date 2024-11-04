@@ -1,7 +1,16 @@
+import { useContext } from "react";
+import { DeploymentContext } from "../context/DeploymentContext";
 
-const ChangeStatus = () => {
+interface Props {
+    unitName: string
+}
+
+const ChangeStatus = ({unitName}: Props) => {
+    const deploymentContext = useContext(DeploymentContext)
+    if (!deploymentContext) throw new Error("problem!");
+    const {setUnitStatus} = deploymentContext
   return (
-    <div>ChangeStatus</div>
+    <button onClick={() => setUnitStatus(unitName, "Deployed")}>ChangeStatus</button>
   )
 }
 
